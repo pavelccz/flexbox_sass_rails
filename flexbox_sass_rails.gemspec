@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Flexbox style classes}
   spec.description   = %q{Flexbox style classes}
-  spec.homepage      = "https://github.com/pavelc/flexbox_sass_rails"
+  spec.homepage      = "https://github.com/pavelccz/flexbox_sass_rails"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
