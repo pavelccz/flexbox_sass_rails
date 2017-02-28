@@ -9,19 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Pavel Cerny"]
   spec.email         = ["pavelc@gmail.com"]
 
-  spec.summary       = "Flexbox style classes"
-  spec.description   = "Flexbox style classes"
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Flexbox style classes}
+  spec.description   = %q{Flexbox style classes}
+  spec.homepage      = "https://github.com/pavelc/flexbox_sass_rails"
   spec.license       = "MIT"
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(app|test|spec|features)/})
