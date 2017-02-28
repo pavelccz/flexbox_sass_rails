@@ -53,12 +53,16 @@
 @mixin fb-flex-amount($amount) {
   @if $amount == 33 {
     $amount: 33.33;
+  } @else if $amount == 66 {
+    $amount: 66.66;
   }
   flex: 1 1 (1% * $amount);
 }
 @mixin fb-layout-row-flex-amount($amount) {
   @if $amount == 33 {
     $amount: 33.33;
+  } @else if $amount == 66 {
+    $amount: 66.66;
   }
   max-width: (1% * $amount);
 }
@@ -68,6 +72,8 @@
 @mixin fb-layout-column-flex-amount($amount) {
   @if $amount == 33 {
     $amount: 33.33;
+  } @else if $amount == 66 {
+    $amount: 66.66;
   }
   max-height: (1% * $amount);
 }
@@ -198,11 +204,20 @@
     %fb-flex#{$output}-amount-33 {
       @include fb-flex-amount(33);
     }
+    %fb-flex#{$output}-amount-66 {
+      @include fb-flex-amount(66);
+    }
     %fb-layout#{$output}-row-flex-amount-33 {
       @include fb-layout-row-flex-amount(33);
     }
+    %fb-layout#{$output}-row-flex-amount-66 {
+      @include fb-layout-row-flex-amount(66);
+    }
     %fb-layout#{$output}-column-flex-amount-33 {
       @include fb-layout-column-flex-amount(33);
+    }
+    %fb-layout#{$output}-column-flex-amount-66 {
+      @include fb-layout-column-flex-amount(66);
     }
 
     // Output
@@ -223,6 +238,11 @@
         @extend %fb-layout#{$output}-row-flex-common;
         @extend %fb-layout#{$output}-row-flex-amount-33;
       }
+      & > .fb-flex#{$output}-66 {
+        @extend %fb-flex#{$output}-amount-66;
+        @extend %fb-layout#{$output}-row-flex-common;
+        @extend %fb-layout#{$output}-row-flex-amount-66;
+      }
     }
     .fb-layout#{$output}-column{
       & > .fb-flex#{$output} {
@@ -239,6 +259,11 @@
         @extend %fb-flex#{$output}-amount-33;
         @extend %fb-layout#{$output}-column-flex-common;
         @extend %fb-layout#{$output}-column-flex-amount-33;
+      }
+      & > .fb-flex#{$output}-66 {
+        @extend %fb-flex#{$output}-amount-66;
+        @extend %fb-layout#{$output}-column-flex-common;
+        @extend %fb-layout#{$output}-column-flex-amount-66;
       }
     }
     @if $size {
@@ -258,6 +283,11 @@
           @extend %fb-layout#{$output}-row-flex-common;
           @extend %fb-layout#{$output}-row-flex-amount-33;
         }
+        & > .fb-flex#{$output}-66 {
+          @extend %fb-flex#{$output}-amount-66;
+          @extend %fb-layout#{$output}-row-flex-common;
+          @extend %fb-layout#{$output}-row-flex-amount-66;
+        }
       }
       .fb-layout-column{
         & > .fb-flex#{$output} {
@@ -274,6 +304,11 @@
           @extend %fb-flex#{$output}-amount-33;
           @extend %fb-layout#{$output}-column-flex-common;
           @extend %fb-layout#{$output}-column-flex-amount-33;
+        }
+        & > .fb-flex#{$output}-66 {
+          @extend %fb-flex#{$output}-amount-66;
+          @extend %fb-layout#{$output}-column-flex-common;
+          @extend %fb-layout#{$output}-column-flex-amount-66;
         }
       }
       .fb-layout#{$output}-row{
@@ -292,6 +327,11 @@
           @extend %fb-layout#{$output}-row-flex-common;
           @extend %fb-layout#{$output}-row-flex-amount-33;
         }
+        & > .fb-flex-66 {
+          @extend %fb-flex#{$output}-amount-66;
+          @extend %fb-layout#{$output}-row-flex-common;
+          @extend %fb-layout#{$output}-row-flex-amount-66;
+        }
       }
       .fb-layout#{$output}-column{
         & > .fb-flex {
@@ -308,6 +348,11 @@
           @extend %fb-flex#{$output}-amount-33;
           @extend %fb-layout#{$output}-column-flex-common;
           @extend %fb-layout#{$output}-column-flex-amount-33;
+        }
+        & > .fb-flex-66 {
+          @extend %fb-flex#{$output}-amount-66;
+          @extend %fb-layout#{$output}-column-flex-common;
+          @extend %fb-layout#{$output}-column-flex-amount-66;
         }
       }
     }

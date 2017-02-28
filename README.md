@@ -133,6 +133,7 @@ fb-flex-95
 fb-flex-100
 
 fb-flex-33
+fb-flex-66
 ```
 
 ## Development
