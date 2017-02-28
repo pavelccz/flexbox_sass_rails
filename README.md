@@ -27,7 +27,9 @@ Or install it yourself as:
 To use the stylesheet as it is, require flexbox_sass_rails in `application.css`. Simply add this line:
 
 ``` css
+/*
 *= require flexbox_sass_rails
+*/
 ```
 
 To modify viewport width breakpoints, instead of requiring it in `application.css`, import flexbox_sass_rails in a scss file in your stylesheets and set width variables:
