@@ -1,6 +1,6 @@
 # flexbox_sass_rails
 
-This ruby gem gives you a set of classes you can use to create a responsive flexbox grid in your rails application. It is very similar to [angular material](https://material.angularjs.org) flexbox classes. It's written in sass, you can specify breakpoints for different viewport widths.
+This ruby gem gives you a set of classes you can use to create a responsive flexbox grid in your rails application. It is very similar to [angular material](https://material.angularjs.org) flexbox classes. It's written in sass, you can specify breakpoints for different media query ranges.
 
 Note that this project is still a work in progress. The released version contains only features that should work perfectly. There is just a basic set of flexbox classes, but more will be added soon.
 
@@ -35,8 +35,8 @@ To use the stylesheet as it is, require flexbox_sass_rails in `application.css`.
 To modify viewport width breakpoints, instead of requiring it in `application.css`, import flexbox_sass_rails in a scss file in your stylesheets and set width variables:
 
 ``` scss
-$layout-sm: 768px;
-$layout-md: 1024px;
+$fb-layout-sm: 768px;
+$fb-layout-md: 1024px;
 
 @import 'flexbox_sass_rails';
 ```
@@ -46,13 +46,13 @@ $layout-md: 1024px;
 These are the preset breakpoints:
 
 ``` scss
-$layout-sm: 600px;
-$layout-md: 960px;
-$layout-lg: 1280px;
-$layout-xl: 1920px;
+$fb-layout-sm: 600px;
+$fb-layout-md: 960px;
+$fb-layout-lg: 1280px;
+$fb-layout-xl: 1920px;
 ```
 
-Breakpoints define the lowest widths of each interval. There are five of them:
+Breakpoints define the lowest widths of each media query range. There are five of them:
 
 ```
 Extra small [xs]:    0px -  599px
@@ -62,7 +62,7 @@ Large       [lg]: 1280px - 1919px
 Extra large [xl]: 1920px and more
 ```
 
-Usage of breakpoints is very simple to make your project responsive. Each class containing the interval abbreviation will only add the styles to the element if the viewport width is within the interval.
+Usage of breakpoints is very simple to make your project responsive. Each class containing the media query range abbreviation will only add the styles to the element if the viewport width is within the media query range.
 
 **Exception!** There is one class excluded from the responsive classes, `fb-layout-fill` can only be set regardless of the viewport's width.
 
@@ -74,7 +74,7 @@ Class names consist of:
 
 ```
                 (optional)
-[prefix]-[name]-[interval]-[value]
+[prefix]-[name]-[media-query-range]-[value]
 
 // fb-flex-xs-20
 [fb]-[flex]-[xs]-[20]
