@@ -22,14 +22,15 @@ Or install it yourself as:
 
 ## Usage
 
-### Include
+### Including flexbox stylesheet in a project:
 
 To use the stylesheet as it is, require flexbox_sass_rails in `application.css`. Simply add this line:
+
 ```
      *= require flexbox_sass_rails
 ```
 
-To modify viewport width breakpoints, import flexbox_sass_rails in a scss file in your stylesheets and set width variables:
+To modify viewport width breakpoints, instead of requiring it in `application.css`, import flexbox_sass_rails in a scss file in your stylesheets and set width variables:
 
 ```
     $layout-sm: 768px;
@@ -70,12 +71,67 @@ Class names allways begin with a `fb-` prefix to avoid conflicts with other clas
 Class names consist of:
 
 ```
-fb-layout-sm-row:
-
-[prefix] - [name] - [interval] - [value]
                     (optional)
-   fb    - layout -     sm     -   row
+    [prefix]-[name]-[interval]-[value]
 
+    // fb-flex-xs-20
+    [fb]-[flex]-[xs]-[20]
+
+    // fb-layout-sm-row:
+    [fb]-[layout]-[sm]-[row]
+
+    // fb-layout-align-md-center-center:
+    [fb]-[layout-align]-[md]-[center-center]
+
+```
+
+**Exception!** There is one class that doesn't have a value part, `fb-flex` (or `fb-flex-sm` etc)
+
+### Set of style classes:
+
+Description will be added soon
+
+```
+    fb-layout-fill
+
+    fb-layout-row    (fb-layout-md-row)
+    fb-layout-column (fb-layout-md-column)
+
+    fb-layout-wrap   (fb-layout-md-wrap)
+
+    fb-layout-align-start-stretch (fb-layout-align-md-start-stretch)
+    fb-layout-align-start-start
+    fb-layout-align-start-center
+    fb-layout-align-start-end
+
+    fb-layout-align-center-stretch
+    fb-layout-align-center-start
+    fb-layout-align-center-center
+    fb-layout-align-center-end
+
+    fb-layout-align-end-stretch
+    fb-layout-align-end-start
+    fb-layout-align-end-center
+    fb-layout-align-end-end
+
+    fb-layout-align-space-around-stretch
+    fb-layout-align-space-around-start
+    fb-layout-align-space-around-center
+    fb-layout-align-space-around-end
+
+    fb-layout-align-space-between-stretch 
+    fb-layout-align-space-between-start
+    fb-layout-align-space-between-center
+    fb-layout-align-space-between-end
+
+    fb-flex (fb-flex-md)
+    fb-flex-5 (fb-flex-md-5)
+    fb-flex-10
+    ...
+    fb-flex-95
+    fb-flex-100
+
+    fb-flex-33
 ```
 
 ## Development
