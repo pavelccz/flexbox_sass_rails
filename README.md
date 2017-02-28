@@ -38,14 +38,14 @@ To modify viewport width breakpoints, instead of requiring it in `application.cs
 $layout-sm: 768px;
 $layout-md: 1024px;
 
-@import 'flexbox_sass_rails'
+@import 'flexbox_sass_rails';
 ```
 
 ### Viewport width breakpoints:
 
 These are the preset breakpoints:
 
-```
+``` scss
 $layout-sm: 600px;
 $layout-md: 960px;
 $layout-lg: 1280px;
