@@ -1,4 +1,4 @@
-# FlexboxSassRails
+# flexbox_sass_rails
 
 This ruby gem gives you a set of classes you can use to create your responsive flexbox grid in your rails application. It is very similar to [angular material](https://material.angularjs.org) flexbox classes. It's written in sass, you can specify breakpoints for different viewport widths.
 
