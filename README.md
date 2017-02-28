@@ -126,6 +126,7 @@ fb-layout-align-space-between-center
 fb-layout-align-space-between-end
 
 fb-flex (fb-flex-md)
+
 fb-flex-5 (fb-flex-md-5)
 fb-flex-10
 ...
@@ -134,6 +135,12 @@ fb-flex-100
 
 fb-flex-33
 fb-flex-66
+
+fb-flex-order--20
+fb-flex-order--19
+...
+fb-flex-order-19
+fb-flex-order-20
 ```
 
 ## Development

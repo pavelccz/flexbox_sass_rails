@@ -129,6 +129,12 @@
   }
 }
 
+// Flex order
+
+@mixin fb-flex-order-amount($amount) {
+  order: $amount;
+}
+
 // Responsivity mixin
 // ==========================================================================
 
@@ -359,7 +365,7 @@
 
     .fb-flex#{$output} {@include fb-flex;}
 
-  // Layout-align
+  // Layout align
 
     // Placeholders
 
@@ -478,6 +484,17 @@
       @extend %fb-layout-align#{$output}-space-between-; 
       @extend %fb-layout-align#{$output}--end;
     }
+
+  // Flex order
+
+    // Output
+
+    @for $i from -20 through 20 {
+      .fb-flex-order#{$output}-#{$i} {
+        @include fb-flex-order-amount($i);
+      }
+    }
+
 }
 
 // Styles output
