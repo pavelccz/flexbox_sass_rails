@@ -73,7 +73,7 @@ Class names consist of:
 fb-layout-sm-row:
 
 [prefix] - [name] - [interval] - [value]
-                (optional)
+                    (optional)
    fb    - layout -     sm     -   row
 
 ```
