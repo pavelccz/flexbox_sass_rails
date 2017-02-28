@@ -46,62 +46,30 @@ $layout-xl: 1920px !default;
     max-height: none;
     max-width: none;
   }
-  @mixin fb-flex-amount {
-    flex: 1 1 100%;
-  }
   @mixin fb-layout-row-flex-common {
     max-height: 100%;
   }
-  @mixin fb-layout-row-flex-amount($amount) {
-    max-width: (1% * $amount);
+  @mixin fb-flex-amount($amount) {
+    @if $amount == 33 {
+      $amount: 33.33;
+    }
+    flex: 1 1 (1% * $amount);
   }
-  @mixin fb-layout-row-flex-amount-33{
-    max-width: 33.33%;
+  @mixin fb-layout-row-flex-amount($amount) {
+    @if $amount == 33 {
+      $amount: 33.33;
+    }
+    max-width: (1% * $amount);
   }
   @mixin fb-layout-column-flex-common {
     max-width: 100%;
   }
   @mixin fb-layout-column-flex-amount($amount) {
+    @if $amount == 33 {
+      $amount: 33.33;
+    }
     max-height: (1% * $amount);
   }
-  @mixin fb-layout-column-flex-amount-33 {
-    max-height: 33.33%;
-  }
-
-  // layout-align
-
-  // .fb-layout-align-center-center {
-  //   &.fb-layout-row,
-  //   &.fb-layout-md-row,
-  //   &.fb-table-row > div {
-  //     & > .fb-flex-md {
-  //       max-width: 100%;
-  //       max-height: auto;
-  //     }
-  //   }
-  // }
-
-  // .fb-layout-align-center-center {
-  //   &.fb-layout-row,
-  //   &.fb-layout-sm-row,
-  //   &.fb-table-row > div {
-  //     & > .fb-flex-sm {
-  //       max-width: 100%;
-  //       max-height: auto;
-  //     }
-  //   }
-  // }
-
-  // .fb-layout-align-center-center {
-  //   &.fb-layout-row,
-  //   &.fb-layout-xs-row,
-  //   &.fb-table-row > div {
-  //     & > .fb-flex-xs {
-  //       max-width: 100%;
-  //       max-height: auto;
-  //     }
-  //   }
-  // }
 
   @mixin fb-layout-align-start- {
     justify-content: flex-start;
@@ -186,17 +154,17 @@ $layout-xl: 1920px !default;
     %fb-layout#{$output}-row-flex {@include fb-layout-row-flex;}
     %fb-layout#{$output}-column-flex {@include fb-layout-column-flex;}
 
-    %fb-flex#{$output}-amount {@include fb-flex-amount;}
-
     %fb-layout#{$output}-row-flex-common {@include fb-layout-row-flex-common;}
     %fb-layout#{$output}-column-flex-common {@include fb-layout-column-flex-common;}
 
     @for $i from 1 through 20 {
+      %fb-flex#{$output}-amount-#{$i * 5} {@include fb-flex-amount($i * 5);}
       %fb-layout#{$output}-row-flex-amount-#{$i * 5} {@include fb-layout-row-flex-amount($i * 5);}
       %fb-layout#{$output}-column-flex-amount-#{$i * 5} {@include fb-layout-column-flex-amount($i * 5);}
     }
-    %fb-layout#{$output}-row-flex-amount-33 {@include fb-layout-row-flex-amount-33;}
-    %fb-layout#{$output}-column-flex-amount-33 {@include fb-layout-column-flex-amount-33;}
+    %fb-flex#{$output}-amount-33 {@include fb-flex-amount(33);}
+    %fb-layout#{$output}-row-flex-amount-33 {@include fb-layout-row-flex-amount(33);}
+    %fb-layout#{$output}-column-flex-amount-33 {@include fb-layout-column-flex-amount(33);}
 
     // output
 
@@ -206,11 +174,13 @@ $layout-xl: 1920px !default;
       }
       @for $i from 1 through 20 {
         & > .fb-flex#{$output}-#{$i * 5} {
+          @extend %fb-flex#{$output}-amount-#{$i * 5};
           @extend %fb-layout#{$output}-row-flex-common;
           @extend %fb-layout#{$output}-row-flex-amount-#{$i * 5};
         }
       }
       & > .fb-flex#{$output}-33 {
+        @extend %fb-flex#{$output}-amount-33;
         @extend %fb-layout#{$output}-row-flex-common;
         @extend %fb-layout#{$output}-row-flex-amount-33;
       }
@@ -221,11 +191,13 @@ $layout-xl: 1920px !default;
       }
       @for $i from 1 through 20 {
         & > .fb-flex#{$output}-#{$i * 5} {
+          @extend %fb-flex#{$output}-amount-#{$i * 5};
           @extend %fb-layout#{$output}-column-flex-common;
           @extend %fb-layout#{$output}-column-flex-amount-#{$i * 5};
         }
       }
       & > .fb-flex#{$output}-33 {
+        @extend %fb-flex#{$output}-amount-33;
         @extend %fb-layout#{$output}-column-flex-common;
         @extend %fb-layout#{$output}-column-flex-amount-33;
       }
@@ -237,11 +209,13 @@ $layout-xl: 1920px !default;
         }
         @for $i from 1 through 20 {
           & > .fb-flex#{$output}-#{$i * 5} {
+            @extend %fb-flex#{$output}-amount-#{$i * 5};
             @extend %fb-layout#{$output}-row-flex-common;
             @extend %fb-layout#{$output}-row-flex-amount-#{$i * 5};
           }
         }
         & > .fb-flex#{$output}-33 {
+          @extend %fb-flex#{$output}-amount-33;
           @extend %fb-layout#{$output}-row-flex-common;
           @extend %fb-layout#{$output}-row-flex-amount-33;
         }
@@ -252,11 +226,13 @@ $layout-xl: 1920px !default;
         }
         @for $i from 1 through 20 {
           & > .fb-flex#{$output}-#{$i * 5} {
+            @extend %fb-flex#{$output}-amount-#{$i * 5};
             @extend %fb-layout#{$output}-column-flex-common;
             @extend %fb-layout#{$output}-column-flex-amount-#{$i * 5};
           }
         }
         & > .fb-flex#{$output}-33 {
+          @extend %fb-flex#{$output}-amount-33;
           @extend %fb-layout#{$output}-column-flex-common;
           @extend %fb-layout#{$output}-column-flex-amount-33;
         }
@@ -267,11 +243,13 @@ $layout-xl: 1920px !default;
         }
         @for $i from 1 through 20 {
           & > .fb-flex-#{$i * 5} {
+            @extend %fb-flex#{$output}-amount-#{$i * 5};
             @extend %fb-layout#{$output}-row-flex-common;
             @extend %fb-layout#{$output}-row-flex-amount-#{$i * 5};
           }
         }
         & > .fb-flex-33 {
+          @extend %fb-flex#{$output}-amount-33;
           @extend %fb-layout#{$output}-row-flex-common;
           @extend %fb-layout#{$output}-row-flex-amount-33;
         }
@@ -282,11 +260,13 @@ $layout-xl: 1920px !default;
         }
         @for $i from 1 through 20 {
           & > .fb-flex-#{$i * 5} {
+            @extend %fb-flex#{$output}-amount-#{$i * 5};
             @extend %fb-layout#{$output}-column-flex-common;
             @extend %fb-layout#{$output}-column-flex-amount-#{$i * 5};
           }
         }
         & > .fb-flex-33 {
+          @extend %fb-flex#{$output}-amount-33;
           @extend %fb-layout#{$output}-column-flex-common;
           @extend %fb-layout#{$output}-column-flex-amount-33;
         }
@@ -294,11 +274,6 @@ $layout-xl: 1920px !default;
     }
 
     .fb-flex#{$output} {@include fb-flex;}
-
-    @for $i from 1 through 20 {
-      .fb-flex#{$output}-#{$i * 5} {@extend %fb-flex#{$output}-amount;}
-    }
-    .fb-flex#{$output}-33 {@extend %fb-flex#{$output}-amount;}
 
   // layout-align
 
