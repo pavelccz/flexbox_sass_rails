@@ -1,130 +1,134 @@
-// variables
+// ==========================================================================
+// Flexbox
+// ==========================================================================
 
-$layout-sm: 600px !default;
-$layout-md: 960px !default;
-$layout-lg: 1280px !default;
-$layout-xl: 1920px !default;
+// Variables
+@import "components/variables";
 
-// style mixins
+// Style mixins
+// ==========================================================================
 
-  // layout
+// Layout
 
-  @mixin fb-layout-row-column {
-    display: flex;
+@mixin fb-layout-row-column {
+  display: flex;
+}
+@mixin fb-layout-row {
+  flex-direction: row;
+}
+@mixin fb-layout-column {
+  flex-direction: column;
+}
+
+@mixin fb-layout-row-flex {
+  min-width: 0;
+  min-height: auto;
+}
+@mixin fb-layout-column-flex {
+  min-width: auto;
+  min-height: 0;
+}
+
+@mixin fb-layout-fill {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+}
+
+@mixin fb-layout-wrap {
+  flex-wrap: wrap;
+}
+
+// Flex
+
+@mixin fb-flex {
+  flex: 1;
+  max-height: none;
+  max-width: none;
+}
+@mixin fb-layout-row-flex-common {
+  max-height: 100%;
+}
+@mixin fb-flex-amount($amount) {
+  @if $amount == 33 {
+    $amount: 33.33;
   }
-  @mixin fb-layout-row {
-    flex-direction: row;
+  flex: 1 1 (1% * $amount);
+}
+@mixin fb-layout-row-flex-amount($amount) {
+  @if $amount == 33 {
+    $amount: 33.33;
   }
-  @mixin fb-layout-column {
-    flex-direction: column;
+  max-width: (1% * $amount);
+}
+@mixin fb-layout-column-flex-common {
+  max-width: 100%;
+}
+@mixin fb-layout-column-flex-amount($amount) {
+  @if $amount == 33 {
+    $amount: 33.33;
   }
+  max-height: (1% * $amount);
+}
 
-  @mixin fb-layout-row-flex {
-    min-width: 0;
-    min-height: auto;
-  }
-  @mixin fb-layout-column-flex {
-    min-width: auto;
-    min-height: 0;
-  }
+// Layout align
 
-  @mixin fb-layout-fill {
-    margin: 0;
-    width: 100%;
-    min-height: 100%;
-    height: 100%;
-  }
+@mixin fb-layout-align-start- {
+  justify-content: flex-start;
+}
+@mixin fb-layout-align-center- {
+  justify-content: center;
+}
+@mixin fb-layout-align-end- {
+  justify-content: flex-end;
+}
+@mixin fb-layout-align-space-around- {
+  justify-content: space-around;
+}
+@mixin fb-layout-align-space-between- {
+  justify-content: space-between;
+}
 
-  @mixin fb-layout-wrap {
-    flex-wrap: wrap;
-  }
-
-  // flex
-
-  @mixin fb-flex {
-    flex: 1;
-    max-height: none;
+@mixin fb-layout-align--stretch {
+  align-content: stretch;
+  align-items: stretch;
+  max-width: none;
+  & > * {
     max-width: none;
   }
-  @mixin fb-layout-row-flex-common {
-    max-height: 100%;
+}
+@mixin fb-layout-align--start {
+  align-items: flex-start;
+  align-content: flex-start;
+  max-width: none;
+  & > * {
+    max-width: none;
   }
-  @mixin fb-flex-amount($amount) {
-    @if $amount == 33 {
-      $amount: 33.33;
-    }
-    flex: 1 1 (1% * $amount);
-  }
-  @mixin fb-layout-row-flex-amount($amount) {
-    @if $amount == 33 {
-      $amount: 33.33;
-    }
-    max-width: (1% * $amount);
-  }
-  @mixin fb-layout-column-flex-common {
+}
+@mixin fb-layout-align--center {
+  align-items: center;
+  align-content: center;
+  max-width: 100%;
+  & > * {
     max-width: 100%;
   }
-  @mixin fb-layout-column-flex-amount($amount) {
-    @if $amount == 33 {
-      $amount: 33.33;
-    }
-    max-height: (1% * $amount);
-  }
-
-  @mixin fb-layout-align-start- {
-    justify-content: flex-start;
-  }
-  @mixin fb-layout-align-center- {
-    justify-content: center;
-  }
-  @mixin fb-layout-align-end- {
-    justify-content: flex-end;
-  }
-  @mixin fb-layout-align-space-around- {
-    justify-content: space-around;
-  }
-  @mixin fb-layout-align-space-between- {
-    justify-content: space-between;
-  }
-
-  @mixin fb-layout-align--stretch {
-    align-content: stretch;
-    align-items: stretch;
+}
+@mixin fb-layout-align--end {
+  align-items: flex-end;
+  align-content: flex-end;
+  max-width: none;
+  & > * {
     max-width: none;
-    & > * {
-      max-width: none;
-    }
   }
-  @mixin fb-layout-align--start {
-    align-items: flex-start;
-    align-content: flex-start;
-    max-width: none;
-    & > * {
-      max-width: none;
-    }
-  }
-  @mixin fb-layout-align--center {
-    align-items: center;
-    align-content: center;
-    max-width: 100%;
-    & > * {
-      max-width: 100%;
-    }
-  }
-  @mixin fb-layout-align--end {
-    align-items: flex-end;
-    align-content: flex-end;
-    max-width: none;
-    & > * {
-      max-width: none;
-    }
-  }
+}
 
-// responsivity mixin
+// Responsivity mixin
+// ==========================================================================
 
 @mixin fb-responsivity-($size: null){
 
-  // add size
+  // Add size
 
   $output: null;
   @if $size {
@@ -133,40 +137,75 @@ $layout-xl: 1920px !default;
     $output: '';
   }
 
-  // layout
+  // Layout
 
-    // placeholders
+    // Placeholders
 
-    %fb-layout#{$output}-row-column {@include fb-layout-row-column;}
-    %fb-layout#{$output}-row {@include fb-layout-row;}
-    %fb-layout#{$output}-column {@include fb-layout-column;}
+    %fb-layout#{$output}-row-column {
+      @include fb-layout-row-column;
+    }
+    %fb-layout#{$output}-row {
+      @include fb-layout-row;
+    }
+    %fb-layout#{$output}-column {
+      @include fb-layout-column;
+    }
 
-    // output
+    // Output
 
-    .fb-layout#{$output}-row{@extend %fb-layout#{$output}-row-column; @extend %fb-layout#{$output}-row;}
-    .fb-layout#{$output}-column{@extend %fb-layout#{$output}-row-column; @extend %fb-layout#{$output}-column;}
+    .fb-layout#{$output}-row{
+      @extend %fb-layout#{$output}-row-column;
+      @extend %fb-layout#{$output}-row;
+    }
+    .fb-layout#{$output}-column{
+      @extend %fb-layout#{$output}-row-column;
+      @extend %fb-layout#{$output}-column;
+    }
 
-    .fb-layout#{$output}-wrap{@include fb-layout-wrap;}
-  // flex
+    .fb-layout#{$output}-wrap{
+      @include fb-layout-wrap;
+    }
 
-    // placeholders
+  // Flex
 
-    %fb-layout#{$output}-row-flex {@include fb-layout-row-flex;}
-    %fb-layout#{$output}-column-flex {@include fb-layout-column-flex;}
+    // Placeholders
 
-    %fb-layout#{$output}-row-flex-common {@include fb-layout-row-flex-common;}
-    %fb-layout#{$output}-column-flex-common {@include fb-layout-column-flex-common;}
+    %fb-layout#{$output}-row-flex {
+      @include fb-layout-row-flex;
+    }
+    %fb-layout#{$output}-column-flex {
+      @include fb-layout-column-flex;
+    }
+
+    %fb-layout#{$output}-row-flex-common {
+      @include fb-layout-row-flex-common;
+    }
+    %fb-layout#{$output}-column-flex-common {
+      @include fb-layout-column-flex-common;
+    }
 
     @for $i from 1 through 20 {
-      %fb-flex#{$output}-amount-#{$i * 5} {@include fb-flex-amount($i * 5);}
-      %fb-layout#{$output}-row-flex-amount-#{$i * 5} {@include fb-layout-row-flex-amount($i * 5);}
-      %fb-layout#{$output}-column-flex-amount-#{$i * 5} {@include fb-layout-column-flex-amount($i * 5);}
+      %fb-flex#{$output}-amount-#{$i * 5} {
+        @include fb-flex-amount($i * 5);
+      }
+      %fb-layout#{$output}-row-flex-amount-#{$i * 5} {
+        @include fb-layout-row-flex-amount($i * 5);
+      }
+      %fb-layout#{$output}-column-flex-amount-#{$i * 5} {
+        @include fb-layout-column-flex-amount($i * 5);
+      }
     }
-    %fb-flex#{$output}-amount-33 {@include fb-flex-amount(33);}
-    %fb-layout#{$output}-row-flex-amount-33 {@include fb-layout-row-flex-amount(33);}
-    %fb-layout#{$output}-column-flex-amount-33 {@include fb-layout-column-flex-amount(33);}
+    %fb-flex#{$output}-amount-33 {
+      @include fb-flex-amount(33);
+    }
+    %fb-layout#{$output}-row-flex-amount-33 {
+      @include fb-layout-row-flex-amount(33);
+    }
+    %fb-layout#{$output}-column-flex-amount-33 {
+      @include fb-layout-column-flex-amount(33);
+    }
 
-    // output
+    // Output
 
     .fb-layout#{$output}-row{
       & > .fb-flex#{$output} {
@@ -275,50 +314,129 @@ $layout-xl: 1920px !default;
 
     .fb-flex#{$output} {@include fb-flex;}
 
-  // layout-align
+  // Layout-align
 
-    // placeholders
+    // Placeholders
 
-    %fb-layout-align#{$output}-start- {@include fb-layout-align-start-;}
-    %fb-layout-align#{$output}-center- {@include fb-layout-align-center-;}
-    %fb-layout-align#{$output}-end- {@include fb-layout-align-end-;}
-    %fb-layout-align#{$output}-space-around- {@include fb-layout-align-space-around-;}
-    %fb-layout-align#{$output}-space-between- {@include fb-layout-align-space-between-;}
+    %fb-layout-align#{$output}-start- {
+      @include fb-layout-align-start-;
+    }
+    %fb-layout-align#{$output}-center- {
+      @include fb-layout-align-center-;
+    }
+    %fb-layout-align#{$output}-end- {
+      @include fb-layout-align-end-;
+    }
+    %fb-layout-align#{$output}-space-around- {
+      @include fb-layout-align-space-around-;
+    }
+    %fb-layout-align#{$output}-space-between- {
+      @include fb-layout-align-space-between-;
+    }
 
-    %fb-layout-align#{$output}--stretch {@include fb-layout-align--stretch;}
-    %fb-layout-align#{$output}--start {@include fb-layout-align--start;}
-    %fb-layout-align#{$output}--center {@include fb-layout-align--center;}
-    %fb-layout-align#{$output}--end {@include fb-layout-align--end;}
+    %fb-layout-align#{$output}--stretch {
+      @include fb-layout-align--stretch;
+    }
+    %fb-layout-align#{$output}--start {
+      @include fb-layout-align--start;
+    }
+    %fb-layout-align#{$output}--center {
+      @include fb-layout-align--center;
+    }
+    %fb-layout-align#{$output}--end {
+      @include fb-layout-align--end;
+    }
 
-    // output
+    // Output
 
-    .fb-layout-align#{$output}-start-stretch {@extend %fb-layout-align#{$output}-start-; @extend %fb-layout-align#{$output}--stretch;}
-    .fb-layout-align#{$output}-start-start {@extend %fb-layout-align#{$output}-start-; @extend %fb-layout-align#{$output}--start;}
-    .fb-layout-align#{$output}-start-center {@extend %fb-layout-align#{$output}-start-; @extend %fb-layout-align#{$output}--center;}
-    .fb-layout-align#{$output}-start-end {@extend %fb-layout-align#{$output}-start-; @extend %fb-layout-align#{$output}--end;}
+    .fb-layout-align#{$output}-start-stretch {
+      @extend %fb-layout-align#{$output}-start-; 
+      @extend %fb-layout-align#{$output}--stretch;
+    }
+    .fb-layout-align#{$output}-start-start {
+      @extend %fb-layout-align#{$output}-start-; 
+      @extend %fb-layout-align#{$output}--start;
+    }
+    .fb-layout-align#{$output}-start-center {
+      @extend %fb-layout-align#{$output}-start-; 
+      @extend %fb-layout-align#{$output}--center;
+    }
+    .fb-layout-align#{$output}-start-end {
+      @extend %fb-layout-align#{$output}-start-; 
+      @extend %fb-layout-align#{$output}--end;
+    }
 
-    .fb-layout-align#{$output}-center-stretch {@extend %fb-layout-align#{$output}-center-; @extend %fb-layout-align#{$output}--stretch;}
-    .fb-layout-align#{$output}-center-start {@extend %fb-layout-align#{$output}-center-; @extend %fb-layout-align#{$output}--start;}
-    .fb-layout-align#{$output}-center-center {@extend %fb-layout-align#{$output}-center-; @extend %fb-layout-align#{$output}--center;}
-    .fb-layout-align#{$output}-center-end {@extend %fb-layout-align#{$output}-center-; @extend %fb-layout-align#{$output}--end;}
+    .fb-layout-align#{$output}-center-stretch {
+      @extend %fb-layout-align#{$output}-center-; 
+      @extend %fb-layout-align#{$output}--stretch;
+    }
+    .fb-layout-align#{$output}-center-start {
+      @extend %fb-layout-align#{$output}-center-; 
+      @extend %fb-layout-align#{$output}--start;
+    }
+    .fb-layout-align#{$output}-center-center {
+      @extend %fb-layout-align#{$output}-center-; 
+      @extend %fb-layout-align#{$output}--center;
+    }
+    .fb-layout-align#{$output}-center-end {
+      @extend %fb-layout-align#{$output}-center-; 
+      @extend %fb-layout-align#{$output}--end;
+    }
 
-    .fb-layout-align#{$output}-end-stretch {@extend %fb-layout-align#{$output}-end-; @extend %fb-layout-align#{$output}--stretch;}
-    .fb-layout-align#{$output}-end-start {@extend %fb-layout-align#{$output}-end-; @extend %fb-layout-align#{$output}--start;}
-    .fb-layout-align#{$output}-end-center {@extend %fb-layout-align#{$output}-end-; @extend %fb-layout-align#{$output}--center;}
-    .fb-layout-align#{$output}-end-end {@extend %fb-layout-align#{$output}-end-; @extend %fb-layout-align#{$output}--end;}
+    .fb-layout-align#{$output}-end-stretch {
+      @extend %fb-layout-align#{$output}-end-; 
+      @extend %fb-layout-align#{$output}--stretch;
+    }
+    .fb-layout-align#{$output}-end-start {
+      @extend %fb-layout-align#{$output}-end-; 
+      @extend %fb-layout-align#{$output}--start;
+    }
+    .fb-layout-align#{$output}-end-center {
+      @extend %fb-layout-align#{$output}-end-; 
+      @extend %fb-layout-align#{$output}--center;
+    }
+    .fb-layout-align#{$output}-end-end {
+      @extend %fb-layout-align#{$output}-end-; 
+      @extend %fb-layout-align#{$output}--end;
+    }
 
-    .fb-layout-align#{$output}-space-around-stretch {@extend %fb-layout-align#{$output}-space-around-; @extend %fb-layout-align#{$output}--stretch;}
-    .fb-layout-align#{$output}-space-around-start {@extend %fb-layout-align#{$output}-space-around-; @extend %fb-layout-align#{$output}--start;}
-    .fb-layout-align#{$output}-space-around-center {@extend %fb-layout-align#{$output}-space-around-; @extend %fb-layout-align#{$output}--center;}
-    .fb-layout-align#{$output}-space-around-end {@extend %fb-layout-align#{$output}-space-around-; @extend %fb-layout-align#{$output}--end;}
+    .fb-layout-align#{$output}-space-around-stretch {
+      @extend %fb-layout-align#{$output}-space-around-; 
+      @extend %fb-layout-align#{$output}--stretch;
+    }
+    .fb-layout-align#{$output}-space-around-start {
+      @extend %fb-layout-align#{$output}-space-around-; 
+      @extend %fb-layout-align#{$output}--start;
+    }
+    .fb-layout-align#{$output}-space-around-center {
+      @extend %fb-layout-align#{$output}-space-around-; 
+      @extend %fb-layout-align#{$output}--center;
+    }
+    .fb-layout-align#{$output}-space-around-end {
+      @extend %fb-layout-align#{$output}-space-around-; 
+      @extend %fb-layout-align#{$output}--end;
+    }
 
-    .fb-layout-align#{$output}-space-between-stretch {@extend %fb-layout-align#{$output}-space-between-; @extend %fb-layout-align#{$output}--stretch;}
-    .fb-layout-align#{$output}-space-between-start {@extend %fb-layout-align#{$output}-space-between-; @extend %fb-layout-align#{$output}--start;}
-    .fb-layout-align#{$output}-space-between-center {@extend %fb-layout-align#{$output}-space-between-; @extend %fb-layout-align#{$output}--center;}
-    .fb-layout-align#{$output}-space-between-end {@extend %fb-layout-align#{$output}-space-between-; @extend %fb-layout-align#{$output}--end;}
+    .fb-layout-align#{$output}-space-between-stretch {
+      @extend %fb-layout-align#{$output}-space-between-; 
+      @extend %fb-layout-align#{$output}--stretch;
+    }
+    .fb-layout-align#{$output}-space-between-start {
+      @extend %fb-layout-align#{$output}-space-between-; 
+      @extend %fb-layout-align#{$output}--start;
+    }
+    .fb-layout-align#{$output}-space-between-center {
+      @extend %fb-layout-align#{$output}-space-between-; 
+      @extend %fb-layout-align#{$output}--center;
+    }
+    .fb-layout-align#{$output}-space-between-end {
+      @extend %fb-layout-align#{$output}-space-between-; 
+      @extend %fb-layout-align#{$output}--end;
+    }
 }
 
-// styles output
+// Styles output
+// ==========================================================================
 
 .fb-layout-fill {
   @include fb-layout-fill;
