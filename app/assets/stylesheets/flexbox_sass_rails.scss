@@ -224,12 +224,12 @@
     // Output
     $flex-options-size: if($size, 6, 2);
     $flex-options: (
-      ("row"   , #{$output}, #{$output}),
-      ("column", #{$output}, #{$output}),
-      ("row"   , ""        , #{$output}),
-      ("column", ""        , #{$output}),
-      ("row"   , #{$output}, ""        ),
-      ("column", #{$output}, ""        )
+      ("row"   , "#{$output}", "#{$output}"),
+      ("column", "#{$output}", "#{$output}"),
+      ("row"   , ""          , "#{$output}"),
+      ("column", ""          , "#{$output}"),
+      ("row"   , "#{$output}", ""          ),
+      ("column", "#{$output}", ""          )
     );
 
     @for $k from 1 through $flex-options-size {
