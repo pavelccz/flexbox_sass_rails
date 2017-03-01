@@ -90,7 +90,9 @@ Class names consist of:
 
 ### Set of style classes:
 
-Description will be added soon
+For illustrated examples, please visit the [examples website](http://pavelc.cz/flexbox_sass_rails). It's still not complete, but as well as new features I'm adding new examples almost every day.
+
+This is a simple list of currently available style classes:
 
 ```
 fb-layout-fill
