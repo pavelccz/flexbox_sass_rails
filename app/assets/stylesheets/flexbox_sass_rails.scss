@@ -142,12 +142,7 @@
 
   // Add size
 
-  $output: null;
-  @if $size {
-    $output: '-' + $size;
-  } @else {
-    $output: '';
-  }
+  $output: if($size, '-' + $size, '');
 
   // Layout
 
@@ -227,140 +222,44 @@
     }
 
     // Output
+    $flex-options-size: if($size, 6, 2);
+    $flex-options: (
+      ("row"   , #{$output}, #{$output}),
+      ("column", #{$output}, #{$output}),
+      ("row"   , ""        , #{$output}),
+      ("column", ""        , #{$output}),
+      ("row"   , #{$output}, ""        ),
+      ("column", #{$output}, ""        )
+    );
 
-    .fb-layout#{$output}-row{
-      & > .fb-flex#{$output} {
-        @extend %fb-layout#{$output}-row-flex;
-      }
-      @for $i from 1 through 20 {
-        & > .fb-flex#{$output}-#{$i * 5} {
-          @extend %fb-flex#{$output}-amount-#{$i * 5};
-          @extend %fb-layout#{$output}-row-flex-common;
-          @extend %fb-layout#{$output}-row-flex-amount-#{$i * 5};
-        }
-      }
-      & > .fb-flex#{$output}-33 {
-        @extend %fb-flex#{$output}-amount-33;
-        @extend %fb-layout#{$output}-row-flex-common;
-        @extend %fb-layout#{$output}-row-flex-amount-33;
-      }
-      & > .fb-flex#{$output}-66 {
-        @extend %fb-flex#{$output}-amount-66;
-        @extend %fb-layout#{$output}-row-flex-common;
-        @extend %fb-layout#{$output}-row-flex-amount-66;
-      }
-    }
-    .fb-layout#{$output}-column{
-      & > .fb-flex#{$output} {
-        @extend %fb-layout#{$output}-column-flex;
-      }
-      @for $i from 1 through 20 {
-        & > .fb-flex#{$output}-#{$i * 5} {
-          @extend %fb-flex#{$output}-amount-#{$i * 5};
-          @extend %fb-layout#{$output}-column-flex-common;
-          @extend %fb-layout#{$output}-column-flex-amount-#{$i * 5};
-        }
-      }
-      & > .fb-flex#{$output}-33 {
-        @extend %fb-flex#{$output}-amount-33;
-        @extend %fb-layout#{$output}-column-flex-common;
-        @extend %fb-layout#{$output}-column-flex-amount-33;
-      }
-      & > .fb-flex#{$output}-66 {
-        @extend %fb-flex#{$output}-amount-66;
-        @extend %fb-layout#{$output}-column-flex-common;
-        @extend %fb-layout#{$output}-column-flex-amount-66;
-      }
-    }
-    @if $size {
-      .fb-layout-row{
-        & > .fb-flex#{$output} {
-          @extend %fb-layout#{$output}-row-flex;
+    @for $k from 1 through $flex-options-size {
+
+      $opt-1: nth( nth( $flex-options, $k ), 1 );
+      $opt-2: nth( nth( $flex-options, $k ), 2 );
+      $opt-3: nth( nth( $flex-options, $k ), 3 );
+
+      .fb-layout#{$opt-2}-#{$opt-1}{
+        & > .fb-flex#{$opt-3} {
+          @extend %fb-layout#{$output}-#{$opt-1}-flex;
         }
         @for $i from 1 through 20 {
-          & > .fb-flex#{$output}-#{$i * 5} {
+          & > .fb-flex#{$opt-3}-#{$i * 5} {
             @extend %fb-flex#{$output}-amount-#{$i * 5};
-            @extend %fb-layout#{$output}-row-flex-common;
-            @extend %fb-layout#{$output}-row-flex-amount-#{$i * 5};
+            @extend %fb-layout#{$output}-#{$opt-1}-flex-common;
+            @extend %fb-layout#{$output}-#{$opt-1}-flex-amount-#{$i * 5};
           }
         }
-        & > .fb-flex#{$output}-33 {
+        & > .fb-flex#{$opt-3}-33 {
           @extend %fb-flex#{$output}-amount-33;
-          @extend %fb-layout#{$output}-row-flex-common;
-          @extend %fb-layout#{$output}-row-flex-amount-33;
+          @extend %fb-layout#{$output}-#{$opt-1}-flex-common;
+          @extend %fb-layout#{$output}-#{$opt-1}-flex-amount-33;
         }
-        & > .fb-flex#{$output}-66 {
+        & > .fb-flex#{$opt-3}-66 {
           @extend %fb-flex#{$output}-amount-66;
-          @extend %fb-layout#{$output}-row-flex-common;
-          @extend %fb-layout#{$output}-row-flex-amount-66;
+          @extend %fb-layout#{$output}-#{$opt-1}-flex-common;
+          @extend %fb-layout#{$output}-#{$opt-1}-flex-amount-66;
         }
-      }
-      .fb-layout-column{
-        & > .fb-flex#{$output} {
-          @extend %fb-layout#{$output}-column-flex;
-        }
-        @for $i from 1 through 20 {
-          & > .fb-flex#{$output}-#{$i * 5} {
-            @extend %fb-flex#{$output}-amount-#{$i * 5};
-            @extend %fb-layout#{$output}-column-flex-common;
-            @extend %fb-layout#{$output}-column-flex-amount-#{$i * 5};
-          }
-        }
-        & > .fb-flex#{$output}-33 {
-          @extend %fb-flex#{$output}-amount-33;
-          @extend %fb-layout#{$output}-column-flex-common;
-          @extend %fb-layout#{$output}-column-flex-amount-33;
-        }
-        & > .fb-flex#{$output}-66 {
-          @extend %fb-flex#{$output}-amount-66;
-          @extend %fb-layout#{$output}-column-flex-common;
-          @extend %fb-layout#{$output}-column-flex-amount-66;
-        }
-      }
-      .fb-layout#{$output}-row{
-        & > .fb-flex {
-          @extend %fb-layout#{$output}-row-flex;
-        }
-        @for $i from 1 through 20 {
-          & > .fb-flex-#{$i * 5} {
-            @extend %fb-flex#{$output}-amount-#{$i * 5};
-            @extend %fb-layout#{$output}-row-flex-common;
-            @extend %fb-layout#{$output}-row-flex-amount-#{$i * 5};
-          }
-        }
-        & > .fb-flex-33 {
-          @extend %fb-flex#{$output}-amount-33;
-          @extend %fb-layout#{$output}-row-flex-common;
-          @extend %fb-layout#{$output}-row-flex-amount-33;
-        }
-        & > .fb-flex-66 {
-          @extend %fb-flex#{$output}-amount-66;
-          @extend %fb-layout#{$output}-row-flex-common;
-          @extend %fb-layout#{$output}-row-flex-amount-66;
-        }
-      }
-      .fb-layout#{$output}-column{
-        & > .fb-flex {
-          @extend %fb-layout#{$output}-column-flex;
-        }
-        @for $i from 1 through 20 {
-          & > .fb-flex-#{$i * 5} {
-            @extend %fb-flex#{$output}-amount-#{$i * 5};
-            @extend %fb-layout#{$output}-column-flex-common;
-            @extend %fb-layout#{$output}-column-flex-amount-#{$i * 5};
-          }
-        }
-        & > .fb-flex-33 {
-          @extend %fb-flex#{$output}-amount-33;
-          @extend %fb-layout#{$output}-column-flex-common;
-          @extend %fb-layout#{$output}-column-flex-amount-33;
-        }
-        & > .fb-flex-66 {
-          @extend %fb-flex#{$output}-amount-66;
-          @extend %fb-layout#{$output}-column-flex-common;
-          @extend %fb-layout#{$output}-column-flex-amount-66;
-        }
-      }
+      }      
     }
 
     .fb-flex#{$output} {@include fb-flex;}

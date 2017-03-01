@@ -136,7 +136,7 @@ fb-flex-100
 fb-flex-33
 fb-flex-66
 
-fb-flex-order--20
+fb-flex-order--20 (flex-order-md--20)
 fb-flex-order--19
 ...
 fb-flex-order-19
