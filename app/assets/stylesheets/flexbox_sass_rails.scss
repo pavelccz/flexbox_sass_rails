@@ -41,6 +41,9 @@
 @mixin fb-layout-wrap {
   flex-wrap: wrap;
 }
+@mixin fb-layout-no-wrap {
+  flex-wrap: nowrap;
+}
 
 // Flex
 
@@ -140,10 +143,16 @@
   order: $amount;
 }
 
+// Hide
+
+@mixin fb-hide {
+  display: none;
+}
+
 // Responsivity mixin
 // ==========================================================================
 
-@mixin fb-responsivity-($size: null){
+@mixin fb-responsivity($size: null){
 
   // Add size
 
@@ -176,6 +185,10 @@
 
     .fb-layout#{$output}-wrap{
       @include fb-layout-wrap;
+    }
+
+    .fb-layout#{$output}-no-wrap{
+      @include fb-layout-no-wrap;
     }
 
   // Flex
@@ -399,6 +412,14 @@
       }
     }
 
+  // Hide
+
+    // Output
+
+    .fb-hide#{$output} {
+      @include fb-hide;
+    }
+
 }
 
 // Styles output
@@ -408,24 +429,48 @@
   @include fb-layout-fill;
 }
 
-@include fb-responsivity-();
+@include fb-responsivity();
+
+@media (max-width: $fb-layout-lg-max) {
+  @include fb-responsivity(lt-xl);
+}
+
+@media (max-width: $fb-layout-md-max) {
+  @include fb-responsivity(lt-lg);
+}
+
+@media (max-width: $fb-layout-sm-max) {
+  @include fb-responsivity(lt-md);
+}
+
+@media (min-width: $fb-layout-sm) {
+  @include fb-responsivity(gt-xs);
+}
+
+@media (min-width: $fb-layout-md) {
+  @include fb-responsivity(gt-sm);
+}
+
+@media (min-width: $fb-layout-lg) {
+  @include fb-responsivity(gt-md);
+}
 
 @media (min-width: $fb-layout-xl) {
-  @include fb-responsivity-(xl);
+  @include fb-responsivity(xl);
 }
 
-@media (min-width: $fb-layout-lg) and (max-width: ($fb-layout-xl - 1)) {
-  @include fb-responsivity-(lg);
+@media (min-width: $fb-layout-lg) and (max-width: ($fb-layout-lg-max)) {
+  @include fb-responsivity(lg);
 }
 
-@media (min-width: $fb-layout-md) and (max-width: ($fb-layout-lg - 1)) {
-  @include fb-responsivity-(md);
+@media (min-width: $fb-layout-md) and (max-width: ($fb-layout-md-max)) {
+  @include fb-responsivity(md);
 }
 
-@media (min-width: $fb-layout-sm) and (max-width: ($fb-layout-md - 1)) {
-  @include fb-responsivity-(sm);
+@media (min-width: $fb-layout-sm) and (max-width: ($fb-layout-sm-max)) {
+  @include fb-responsivity(sm);
 }
 
-@media (max-width: ($fb-layout-sm - 1)) {
-  @include fb-responsivity-(xs);
+@media (max-width: ($fb-layout-xs-max)) {
+  @include fb-responsivity(xs);
 }
