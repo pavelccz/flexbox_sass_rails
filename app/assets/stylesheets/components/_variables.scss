@@ -7,3 +7,8 @@ $fb-layout-sm: 600px !default;
 $fb-layout-md: 960px !default;
 $fb-layout-lg: 1280px !default;
 $fb-layout-xl: 1920px !default;
+
+$fb-layout-xs-max: $fb-layout-sm - 1 !default;
+$fb-layout-sm-max: $fb-layout-md - 1 !default;
+$fb-layout-md-max: $fb-layout-lg - 1 !default;
+$fb-layout-lg-max: $fb-layout-xl - 1 !default;
