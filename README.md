@@ -64,6 +64,17 @@ Large       [lg]: 1280px - 1919px
 Extra large [xl]: 1920px and more
 ```
 
+Extra options:
+
+```
+Greater than extra small [gt-xs]:  600px and more
+Greater than small       [gt-sm]:  960px and more
+Greater than medium      [gt-md]: 1280px and more
+Less than medium         [lt-md]:    0px -  959px
+Less than large          [lt-lg]:    0px - 1279px
+Less than extra large    [lt-xl]:    0px - 1919px
+```
+
 Usage of breakpoints is very simple to make your project responsive. Each class containing the media query range abbreviation will only add the styles to the element if the viewport width is within the media query range.
 
 **Exception!** There is one class excluded from the responsive classes, `fb-layout-fill` can only be set regardless of the viewport's width.
@@ -81,8 +92,8 @@ Class names consist of:
 // fb-flex-xs-20
 [fb]-[flex]-[xs]-[20]
 
-// fb-layout-sm-row:
-[fb]-[layout]-[sm]-[row]
+// fb-layout-lt-xl-row:
+[fb]-[layout]-[lt-xl]-[row]
 
 // fb-layout-align-md-center-center:
 [fb]-[layout-align]-[md]-[center-center]
@@ -103,6 +114,7 @@ fb-layout-row (fb-layout-md-row)
 fb-layout-column (fb-layout-md-column)
 
 fb-layout-wrap (fb-layout-md-wrap)
+fb-layout-no-wrap
 
 fb-layout-align-start-stretch (fb-layout-align-md-start-stretch)
 fb-layout-align-start-start
@@ -145,6 +157,8 @@ fb-flex-order--19
 ...
 fb-flex-order-19
 fb-flex-order-20
+
+fb-hide (fb-hide-gt-sm)
 ```
 
 ## Development
